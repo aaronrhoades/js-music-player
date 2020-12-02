@@ -74,7 +74,6 @@ prevBtn.onclick = function() {
         closeAudioContext();
         
     if (audioCtx.currentTime < 3 || !isPlaying) {
-        audioCtx.close();
         decrementIndex();
     }
     if (isPlaying) {
@@ -129,11 +128,10 @@ function getAudioData(fileLocation) {
     request.send();
 } //end getAudioData()
 
-async function closeAudioContext() {
+function closeAudioContext() {
     audioCtx.close().then(function() { 
       console.log("close function of Audio Context");
     });
-    await audioCtx.close();
 }
 
 function getAndPlayAudio() {

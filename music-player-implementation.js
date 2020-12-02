@@ -146,7 +146,13 @@ function unloadAudioPlayer() {
 }
 
 var updater = document.getElementById('updater');
-function updateLogging(){
+function toggleDiagnostics() {
+    let updater = document.getElementById("updater");
+    let attrValue = (updater.getAttribute('hidden') === 'hidden') ? 'false': 'hidden'; 
+    updater.setAttribute('hidden', attrValue);
+    
+}
+function updateLogging() {
     if (audioCtx){
         var timestamp = audioCtx.getOutputTimestamp();        
         var txt = "Current Time: " + audioCtx.currentTime + "<br>";
@@ -170,7 +176,7 @@ window.setInterval(() => {
     updateLogging();
 }, 100);
 
-function setPlayPauseIcon(iconName){
+function setPlayPauseIcon(iconName) {
     if(iconName === 'play'){
         playPauseBtn.getElementsByClassName("playIcon")[0].style.display = "initial";
         playPauseBtn.getElementsByClassName("pauseIcon")[0].style.display = "none";
@@ -182,7 +188,7 @@ function setPlayPauseIcon(iconName){
     }
 }
 
-function playNextSong(){
+function playNextSong() {
     incrementIndex();
     if (isPlaying) source.stop(0);
     if(audioCtx.state != 'closed') {
@@ -201,7 +207,7 @@ function playNextSong(){
         updateUI();
     }
 }
-function decrementIndex(){
+function decrementIndex() {
     if (playlistIndex <= 0) {
         playlistIndex = playlist.length - 1;
     } else {

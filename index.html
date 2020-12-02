@@ -13,14 +13,16 @@
 <body style="background: #d6dce4;">
     <div>
         <h1>Music Player</h1>
-        <h2 id="songTitle" class="title"></h2>
-        <audio id="musicPlayer"></audio>
-        <div class="prog-bar-container-outter">
-            <div class="prog-bar-container">
-                <progress value="50" max="100" id="progBar"></progress>
+        <div id="musicMetadata" aria-live="polite">
+            <h2 id="songTitle" class="title"></h2>
+            <audio id="musicPlayer"></audio>
+            <div class="prog-bar-container-outter">
+                <div class="prog-bar-container">
+                    <progress value="50" max="100" id="progBar"></progress>
+                </div>
             </div>
         </div>
-        <div class="player-controls">
+        <div class="player-controls" aria-controls="musicMetadata">
             <button class="music-play music-player-buttons prev neo neo-circle" aria-label="Previous song">
                 <i class="fas fa-step-backward"></i>
             </button>
@@ -35,7 +37,8 @@
             <i class="fas fa-step-forward"></i>
         </button>
         </div>
-        <div class="updater" id="updater"></div>
+        <button onclick="toggleDiagnostics()">Show Diagnostics</button>
+        <div class="updater" id="updater" hidden="hidden"></div>
     </div>
     <script src="./music-player-implementation.js"></script>
 </body>

@@ -1,4 +1,4 @@
-h1, h2, h3, h4, h5, h6, p, body {
+h1, h2, h3, h4, h5, h6, p, body, button {
   font-family: 'Quicksand', sans-serif;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -44,16 +44,12 @@ body {
   }
   .neo-circle {
     border-radius: 50%;
-    /* width: 100px; */
-    /* height: 100px; */
   }
   .neo-square {
     border-radius: 20%;
-    /* width: 90px; */
-    /* height: 90px; */
   }
   .neo {
-    /* margin: 20px; for demo */
+    color: #6e959e;
     background: #d6dce4;
     border: 2px solid #d6dce4;
     border-top-color: #dee4ea;
@@ -82,6 +78,13 @@ body {
     border-radius: 5px;
     height: 17px;
 }
+button.neo {
+  font-weight: 700;
+  padding:  10px;
+}
+button.neo:hover {
+  cursor: pointer;
+}
 .prog-bar-container {
     padding: 0;
     height: 16px;
@@ -104,3 +107,15 @@ progress#progBar::-webkit-progress-bar {
     background: rgb(2,0,36);
     background: linear-gradient(0deg, rgb(214 220 228) 0%, rgb(214 220 228) 69%);
 }
+/* Start Diagnostics */
+.updater {
+  background: #33333333;
+  padding: 1rem;
+  max-width: 330px;
+  margin: 2em auto;
+}
+button#btnToggleDiagnostics {
+  display: block;
+  margin: 2em auto;
+}
+/* End Diagnostics */

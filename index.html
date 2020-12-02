@@ -18,7 +18,7 @@
             <audio id="musicPlayer"></audio>
             <div class="prog-bar-container-outter">
                 <div class="prog-bar-container">
-                    <progress value="50" max="100" id="progBar"></progress>
+                    <progress value="0" max="100" id="progBar"></progress>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
             <i class="fas fa-step-forward"></i>
         </button>
         </div>
-        <button onclick="toggleDiagnostics()">Show Diagnostics</button>
+        <button id="btnToggleDiagnostics" onclick="toggleDiagnostics()" class="neo neo-square">Show Diagnostics</button>
         <div class="updater" id="updater" hidden="hidden"></div>
     </div>
     <script src="./music-player-implementation.js"></script>

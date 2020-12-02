@@ -40,6 +40,8 @@ stopBtn.onclick = function() {
     setPlayPauseIcon("play");
     isPlaying = false;
     updateUI();
+
+    window.clearInterval(timerFunctions);
 }
 
 playPauseBtn.onclick = function() {
@@ -51,11 +53,13 @@ playPauseBtn.onclick = function() {
     }
     if(audioCtx.state === 'running') {
     audioCtx.suspend().then(function() {
+        window.clearInterval(timerFunctions);
         setPlayPauseIcon('play');
         isPlaying = false;
     });
     } else if(audioCtx.state === 'suspended') {
     audioCtx.resume().then(function() {
+        window.setInterval(timerFunctions, 100);
         setPlayPauseIcon('pause');
         isPlaying = true;
     });  
@@ -65,7 +69,10 @@ playPauseBtn.onclick = function() {
 prevBtn.onclick = function() {
     if (audioCtx.state === 'running' || audioCtx.state === 'suspended')
         source.stop(0);
+
+    if (audioCtx != 'closed')
         closeAudioContext();
+        
     if (audioCtx.currentTime < 3 || !isPlaying) {
         audioCtx.close();
         decrementIndex();
@@ -129,7 +136,8 @@ async function closeAudioContext() {
     await audioCtx.close();
 }
 
-function getAndPlayAudio(){
+function getAndPlayAudio() {
+    window.setInterval(timerFunctions, 100);
     getAudioData(playlist[playlistIndex].fileLocation);
     source.start(0);
     updateUI();
@@ -139,21 +147,19 @@ function updateUI() {
     songTitle.innerHTML = playlist[playlistIndex].title;
 }
 
-function unloadAudioPlayer() {
-    closeAudioContext();
-    var timestamp = audioCtx.getOutputTimestamp();
-    console.log(timestamp);   
-}
-
 var updater = document.getElementById('updater');
 function toggleDiagnostics() {
-    let updater = document.getElementById("updater");
-    let attrValue = (updater.getAttribute('hidden') === 'hidden') ? 'false': 'hidden'; 
-    updater.setAttribute('hidden', attrValue);
-    
+    let btnToggle = document.getElementById("btnToggleDiagnostics");
+    if (updater.getAttribute('hidden') === 'hidden') {
+        updater.removeAttribute("hidden");
+        btnToggle.innerText = 'Hide Diagnostics'; 
+    } else { 
+        updater.setAttribute("hidden", "hidden");
+        btnToggle.innerText = 'Show Diagnostics';
+    }     
 }
 function updateLogging() {
-    if (audioCtx){
+    if (audioCtx) {
         var timestamp = audioCtx.getOutputTimestamp();        
         var txt = "Current Time: " + audioCtx.currentTime + "<br>";
         txt += "Current State: " + audioCtx.state + "<br>";
@@ -165,7 +171,8 @@ function updateLogging() {
     }
 }
 
-window.setInterval(() => {
+function timerFunctions() {
+    //update progress bar
     if (audioCtx && audioCtx.state != 'closed' && this.source.buffer) {
         let progBarValue = 100 * (this.audioCtx.currentTime / this.source.buffer['duration']) || 0;
         progBar.value = progBarValue;
@@ -174,8 +181,7 @@ window.setInterval(() => {
         progBar.value = 0;
     }
     updateLogging();
-}, 100);
-
+}
 function setPlayPauseIcon(iconName) {
     if(iconName === 'play'){
         playPauseBtn.getElementsByClassName("playIcon")[0].style.display = "initial";

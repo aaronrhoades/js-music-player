@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "start": "start chrome http://localhost:8080 --temp-profile && http-server ."
+    },
+    "devDependencies": {
+        "http-server": "^0.12.3"
+    }
+}

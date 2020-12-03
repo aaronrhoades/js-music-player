@@ -1,3 +1,16 @@
+/* start generic layout */
+@media (max-width: 768px){
+  .hide-m {
+    display: none;
+  }
+}
+body {
+  background: #d6dce4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
 h1, h2, h3, h4, h5, h6, p, body, button {
   font-family: 'Quicksand', sans-serif;
 }
@@ -16,11 +29,52 @@ h3 {
   font-size: 1.17;
   margin-bottom: 1em;
 }
-
 h4, p {
   font-size: 1em;
   color: #222;  
 }
+/* end start generic layout */
+
+/* start neomorphism */
+.neo-circle {
+  border-radius: 50%;
+}
+.neo-square {
+  border-radius: 20%;
+}
+.neo {
+  color: #6e959e;
+  background: #d6dce4;
+  border: 2px solid #d6dce4;
+  border-top-color: #dee4ea;
+  border-left-color: #e2e3e4;
+  box-shadow: 6px 6px 10px -4px #c2cad4, -11px -6px 10px -2px #ffffff59;
+}
+.neo:focus {
+  outline: none;
+  border: 2px solid #6e959e;
+}
+.neo:hover {
+  background: #ffffff59;
+}
+.neo:active {
+  box-shadow: 0px 0px 8px -2px inset, 6px 6px 10px -4px #ffffff59;
+  background: #cdd5dd;
+  border-bottom-color: #ffffff59;
+  border-right-color: #ffffff59;
+  border-top-color: #c2cad4;
+  border-left-color: #c2cad4;
+}
+button.neo {
+  font-weight: 700;
+  padding:  10px;
+}
+button.neo:hover {
+  cursor: pointer;
+}
+/* end neomorphism */
+
+/* start music player */
 .player-controls {
     display: flex;
     justify-content: center;
@@ -34,56 +88,12 @@ h4, p {
     width: 4rem;
     height: 4rem;
 }
-
-body {
-    background: #d6dce4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-  }
-  .neo-circle {
-    border-radius: 50%;
-  }
-  .neo-square {
-    border-radius: 20%;
-  }
-  .neo {
-    color: #6e959e;
-    background: #d6dce4;
-    border: 2px solid #d6dce4;
-    border-top-color: #dee4ea;
-    border-left-color: #e2e3e4;
-    box-shadow: 6px 6px 10px -4px #c2cad4, -11px -6px 10px -2px #ffffff59;
-  }
-  .neo:focus {
-    outline: none;
-    border: 2px solid #6e959e;
-  }
-  .neo:hover {
-    background: #ffffff59;
-  }
-  .neo:active {
-    box-shadow: 0px 0px 8px -2px inset, 6px 6px 10px -4px #ffffff59;
-    background: #cdd5dd;
-    border-bottom-color: #ffffff59;
-    border-right-color: #ffffff59;
-    border-top-color: #c2cad4;
-    border-left-color: #c2cad4;
-  }
-  progress#progBar {
+progress#progBar {
     -webkit-appearance: none;
     width: 100%;
     margin: 0;
     border-radius: 5px;
     height: 17px;
-}
-button.neo {
-  font-weight: 700;
-  padding:  10px;
-}
-button.neo:hover {
-  cursor: pointer;
 }
 .prog-bar-container {
     padding: 0;
@@ -107,7 +117,9 @@ progress#progBar::-webkit-progress-bar {
     background: rgb(2,0,36);
     background: linear-gradient(0deg, rgb(214 220 228) 0%, rgb(214 220 228) 69%);
 }
-/* Start Diagnostics */
+/* end music player */
+
+/* start diagnostics */
 .updater {
   background: #33333333;
   padding: 1rem;
@@ -118,4 +130,4 @@ button#btnToggleDiagnostics {
   display: block;
   margin: 2em auto;
 }
-/* End Diagnostics */
+/* end diagnostics */
